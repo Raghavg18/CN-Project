@@ -1,0 +1,22 @@
+Phase 2A client DNS setup
+
+Raghav / Mac 3, operator-supplied terminal output
+nameserver 10.7.15.27
+nameserver 10.7.3.98
+{"backend":"B","status":"ok","time":"2026-11-23T16:56:08.722Z"}
+
+Kevish / Mac 2, direct verification
+2026-11-23 22:27:03 IST
+nameserver 10.7.15.27
+nameserver 10.7.3.98
+  domain   : solo.test
+  nameserver[0] : 10.7.15.27
+  nameserver[1] : 10.7.3.98
+There aren't any DNS Servers set on Wi-Fi.
+
+Normal project HTTPS
+{"backend":"A","status":"ok","time":"2026-11-23T16:57:03.964Z"}
+Public HTTPS
+HTTP/2 200
+
+Primary DNS stayed online for these setup checks.

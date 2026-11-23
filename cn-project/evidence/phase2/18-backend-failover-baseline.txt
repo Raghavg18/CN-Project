@@ -1,0 +1,20 @@
+Phase 2D live baseline before stopping Backend A
+2026-11-24 00:15:11 IST
+HTTP/2 200
+x-backend: A
+x-edge: primary
+HTTP/2 200
+x-backend: B
+x-edge: primary
+HTTP/2 200
+x-backend: A
+x-edge: primary
+HTTP/2 200
+x-backend: B
+x-edge: primary
+HTTP/2 200
+x-backend: A
+x-edge: primary
+HTTP/2 200
+x-backend: B
+x-edge: primary

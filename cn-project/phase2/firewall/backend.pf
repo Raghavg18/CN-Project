@@ -1,0 +1,7 @@
+# Load only as the com.apple/solo-phase2 anchor on the backend Mac.
+lan_if = "en0"
+primary_edge = "10.7.3.98"
+backend_ports = "{ 3001, 3002 }"
+
+pass in quick on $lan_if inet proto tcp from $primary_edge to any port $backend_ports keep state
+block drop in quick on $lan_if proto tcp from any to any port $backend_ports

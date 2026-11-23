@@ -1,0 +1,17 @@
+Phase 2B/E rollback and manual cache flush
+
+Raghav, operator-supplied outputs
+Initial flush and normal HTTPS: x-edge: standby
+Flush after rollback and normal HTTPS: x-edge: primary
+No HTTPS sample was recorded between the DNS rollback and the second flush.
+
+Independent rollback verification from Mac 2
+2026-11-24 00:08:36 IST
+Resolver 10.7.15.27
+app.solo.test.		30	IN	A	10.7.3.98
+api.solo.test.		30	IN	A	10.7.3.98
+Resolver 10.7.3.98
+app.solo.test.		30	IN	A	10.7.3.98
+api.solo.test.		30	IN	A	10.7.3.98
+HTTP/2 200
+x-edge: primary

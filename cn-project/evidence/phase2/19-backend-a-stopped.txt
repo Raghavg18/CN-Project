@@ -1,0 +1,15 @@
+Phase 2D live failover while Backend A was stopped
+
+Kevish, operator-supplied HTTPS output
+Request 1: HTTP/2 200 | X-Backend: B | X-Edge: primary
+Request 2: HTTP/2 200 | X-Backend: B | X-Edge: primary
+Request 3: HTTP/2 200 | X-Backend: B | X-Edge: primary
+Request 4: HTTP/2 200 | X-Backend: B | X-Edge: primary
+Request 5: HTTP/2 200 | X-Backend: B | X-Edge: primary
+Request 6: HTTP/2 200 | X-Backend: B | X-Edge: primary
+
+Independent direct check
+2026-11-24 00:17:28 IST
+{"backend":"A","status":"ok","time":"2026-11-23T18:47:28.697Z"}
+Latest nginx log for the stopped upstream, if readable
+2026/11/24 00:16:57 [error] 27420#0: *131 kevent() reported that connect() failed (61: Connection refused) while connecting to upstream, client: 10.7.3.98, server: app.solo.test, request: "GET /api/status HTTP/2.0", upstream: "http://10.7.21.8:3001/api/status", host: "app.solo.test"

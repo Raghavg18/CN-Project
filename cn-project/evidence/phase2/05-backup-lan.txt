@@ -1,0 +1,10 @@
+Phase 2A backup DNS LAN check
+Provenance: operator-supplied transcript after requesting the checks from Raghav / Mac 3.
+
+$ dig @10.7.3.98 app.solo.test A +time=2 +tries=1 +noall +answer
+app.solo.test.		30	IN	A	10.7.3.98
+
+$ dig @10.7.3.98 api.solo.test A +time=2 +tries=1 +noall +answer
+api.solo.test.		30	IN	A	10.7.3.98
+
+Both replies match the Mac 2 activation check. Automatic client fallback remains to be tested.

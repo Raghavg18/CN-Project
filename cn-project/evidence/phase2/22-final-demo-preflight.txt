@@ -1,0 +1,42 @@
+Final demo preflight from Kevish / Mac 2
+2026-11-24 00:19:19 IST
+
+DNS resolver 10.7.15.27
+app.solo.test.		30	IN	A	10.7.3.98
+api.solo.test.		30	IN	A	10.7.3.98
+
+DNS resolver 10.7.3.98
+app.solo.test.		30	IN	A	10.7.3.98
+api.solo.test.		30	IN	A	10.7.3.98
+
+Normal trusted HTTPS on the primary
+HTTP/2 200
+x-backend: B
+x-edge: primary
+HTTP/2 200
+x-backend: A
+x-edge: primary
+HTTP/2 200
+x-backend: B
+x-edge: primary
+HTTP/2 200
+x-backend: A
+x-edge: primary
+
+Direct trusted HTTPS to standby by hostname
+HTTP/2 200
+x-backend: B
+x-edge: standby
+
+HTTP caching and conditional request
+HTTP/2 200
+cache-control: public, max-age=60
+etag: W/"31-BhpixH3upRuqs+uGPrcnwzO1ql0"
+HTTP/2 304
+
+Capture files
+File name:           cn-project/evidence/captures/cn-phase1-app-flow.pcapng
+Number of packets:   28
+
+File name:           cn-project/evidence/phase2/A-backup-dns.pcapng
+Number of packets:   2

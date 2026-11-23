@@ -1,0 +1,18 @@
+Phase 2B/E pre-cutover verification from Mac 2
+2026-11-23 23:11:39 IST
+
+primary edge at 10.7.3.98
+HTTP/2 200
+x-backend: B
+x-edge: primary
+
+standby edge at 10.7.21.8
+HTTP/2 200
+x-backend: B
+x-edge: standby
+
+Both DNS servers still point app.solo.test to primary
+Resolver 10.7.15.27
+app.solo.test.		30	IN	A	10.7.3.98
+Resolver 10.7.3.98
+app.solo.test.		30	IN	A	10.7.3.98

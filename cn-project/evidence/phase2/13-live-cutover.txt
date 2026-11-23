@@ -1,0 +1,34 @@
+Phase 2B/E live DNS cutover, 2026-11-24 IST
+
+Raghav / Mac 3 operator-supplied watcher result. Both DNS columns matched in all 22 samples. Every normal HTTPS sample returned HTTP/2 200.
+
+Time       Direct DNS answer (both)   HTTPS X-Edge
+00:03:30   10.7.3.98                  primary
+00:03:32   10.7.3.98                  primary
+00:03:34   10.7.3.98                  primary
+00:03:36   10.7.21.8                  primary
+00:03:38   10.7.21.8                  primary
+00:03:41   10.7.21.8                  primary
+00:03:43   10.7.21.8                  primary
+00:03:45   10.7.21.8                  primary
+00:03:47   10.7.21.8                  primary
+00:03:49   10.7.21.8                  primary
+00:03:52   10.7.21.8                  primary
+00:03:54   10.7.21.8                  primary
+00:03:56   10.7.21.8                  primary
+00:03:58   10.7.21.8                  primary
+00:04:01   10.7.21.8                  primary
+00:04:03   10.7.21.8                  primary
+00:04:05   10.7.21.8                  primary
+00:04:07   10.7.21.8                  primary
+00:04:09   10.7.21.8                  standby
+00:04:12   10.7.21.8                  standby
+00:04:14   10.7.21.8                  standby
+00:04:16   10.7.21.8                  standby
+
+Direct answers first showed standby at 00:03:36. The first normal HTTPS request through standby was observed 33 seconds later at 00:04:09. This interval is measured between samples and is not an exact measurement of the resolver's cache lifetime.
+
+Kevish's follow-up while standby was active
+Both resolvers returned app.solo.test. 30 IN A 10.7.21.8.
+Both resolvers returned api.solo.test. 30 IN A 10.7.3.98.
+Normal HTTPS to api.solo.test returned HTTP/2 200 and X-Edge: primary.

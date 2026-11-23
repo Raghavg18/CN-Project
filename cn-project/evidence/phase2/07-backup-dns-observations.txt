@@ -1,0 +1,21 @@
+Phase 2A backup DNS packet and application observations
+
+Raghav / Mac 3 (operator-supplied Wireshark screenshot)
+Frame 1: 10.7.21.8 -> 10.7.3.98, UDP DNS A query for app.solo.test, transaction 0x79d5.
+Frame 2: 10.7.3.98 -> 10.7.21.8, matching response, A 10.7.3.98, relative time 0.018983 s.
+
+Kevish / Mac 2 (direct checks after receipt of screenshot)
+$ dig @10.7.15.27 app.solo.test A +time=2 +tries=1 +noall +answer
+;; connection timed out; no servers could be reached
+$ /usr/bin/curl -fsS --max-time 6 https://app.solo.test/api/status
+{"backend":"A","status":"ok","time":"2026-11-23T17:06:59.252Z"}
+
+Raw capture verification (A-backup-dns.pcapng)
+tshark decoded both frames and confirmed that the matched answer to app.solo.test was 10.7.3.98 with a 30-second TTL.
+
+Recovery check from Mac 2, 2026-11-23 22:43:25 IST
+Primary 10.7.15.27: app.solo.test. 60 IN A 10.7.3.98
+Backup 10.7.3.98: app.solo.test. 30 IN A 10.7.3.98
+Normal HTTPS: {"backend":"B","status":"ok","time":"2026-11-23T17:13:26.261Z"}
+
+The capture identifies the backup reply on Mac 3. The independent checks document the primary timeout, successful application access and primary recovery on Mac 2. Raghav's paired terminal transcript can supplement this evidence.

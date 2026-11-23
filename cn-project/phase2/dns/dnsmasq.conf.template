@@ -1,0 +1,11 @@
+# Phase 2 primary and backup resolvers use the same records and TTL.
+listen-address=127.0.0.1,@DNS_IP@
+bind-interfaces
+no-resolv
+server=8.8.8.8
+server=1.1.1.1
+local=/solo.test/
+no-hosts
+addn-hosts=@BREW_PREFIX@/etc/dnsmasq.solo.hosts
+local-ttl=30
+log-queries

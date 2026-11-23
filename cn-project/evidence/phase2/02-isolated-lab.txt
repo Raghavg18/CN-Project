@@ -1,0 +1,67 @@
+Phase 2 isolated lab on Mac 2
+2026-11-23 22:16:23 IST
+Temporary DNS/HTTP ports and an ephemeral test CA. This lab does not deploy to the three-Mac LAN.
+
+A - two loopback resolvers, identical TTL and records, then stop the first
+dns-primary dnsmasq: syntax check OK.
+dns-backup dnsmasq: syntax check OK.
+app.solo.test.		30	IN	A	10.7.3.98
+api.solo.test.		30	IN	A	10.7.3.98
+app.solo.test.		30	IN	A	10.7.3.98
+api.solo.test.		30	IN	A	10.7.3.98
+Stopped primary endpoint: ;; connection timed out; no servers could be reached
+Backup endpoint continues answering:
+app.solo.test.		30	IN	A	10.7.3.98
+
+B/E - DNS hosts reload, cached answer, TTL expiry and explicit cache clear
+Prime lab caching resolver:
+app.solo.test.		30	IN	A	10.7.3.98
+Fresh answer after SIGHUP:
+app.solo.test.		30	IN	A	10.7.21.8
+Cached answer before expiry:
+app.solo.test.		30	IN	A	10.7.3.98
+Control record api.solo.test:
+api.solo.test.		30	IN	A	10.7.3.98
+Cached resolver after natural expiry:
+app.solo.test.		30	IN	A	10.7.21.8
+Fresh answer after restore:
+app.solo.test.		30	IN	A	10.7.3.98
+Cached answer before explicit cache clear:
+app.solo.test.		30	IN	A	10.7.21.8
+Cached resolver after explicit cache clear:
+app.solo.test.		30	IN	A	10.7.3.98
+
+D/E - trusted TLS, primary and standby identity, and backend failover/recovery
+solo.crt: OK
+X509v3 Subject Alternative Name:
+    DNS:app.solo.test, DNS:api.solo.test
+primary :80/:443 deployment syntax: successful
+solo.crt: OK
+X509v3 Subject Alternative Name:
+    DNS:app.solo.test, DNS:api.solo.test
+standby :80/:443 deployment syntax: successful
+HTTP/2 200 | x-backend: B | x-edge: primary
+HTTP/2 200 | x-backend: A | x-edge: primary
+HTTP/2 200 | x-backend: B | x-edge: primary
+HTTP/2 200 | x-backend: A | x-edge: primary
+HTTP/2 200 | x-backend: B | x-edge: standby
+HTTP/2 200 | x-backend: A | x-edge: standby
+HTTP/2 200 | x-backend: B | x-edge: standby
+HTTP/2 200 | x-backend: A | x-edge: standby
+Only Backend A stopped:
+HTTP/2 200 | x-backend: B | x-edge: primary
+HTTP/2 200 | x-backend: B | x-edge: primary
+HTTP/2 200 | x-backend: B | x-edge: primary
+HTTP/2 200 | x-backend: B | x-edge: primary
+HTTP/2 200 | x-backend: B | x-edge: primary
+HTTP/2 200 | x-backend: B | x-edge: primary
+nginx recorded the failed upstream connection on port 13001.
+A restarted after passive failure window:
+HTTP/2 200 | x-backend: B | x-edge: primary
+HTTP/2 200 | x-backend: B | x-edge: primary
+HTTP/2 200 | x-backend: A | x-edge: primary
+HTTP/2 200 | x-backend: B | x-edge: primary
+
+C - PF syntax only. No firewall rules loaded in this lab.
+pfctl dry run passed (exit 0).
+Live three-Mac DNS fallback, macOS client caching, and firewall counters require the LAN demo.

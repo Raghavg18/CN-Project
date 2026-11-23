@@ -86,4 +86,4 @@ TLS ends at nginx. nginx to backend is plain HTTP on the LAN. The backend theref
 
 ## 6. Single points of failure
 
-Mac 1 (DNS) and Mac 2 (edge). Phase 2 adds a backup resolver and a standby edge with a DNS cutover.
+Mac 1 (DNS) and Mac 2 (edge) are the Phase 1 single points of failure. See the [Phase 2 architecture](PHASE2-ARCHITECTURE.md) for the updated roles, cutover flow and current IP inventory.

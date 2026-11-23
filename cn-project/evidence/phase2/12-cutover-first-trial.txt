@@ -1,0 +1,7 @@
+Phase 2B/E first timed run, 2026-11-24 IST
+
+Raghav's supplied transcript covered 00:00:45 through 00:01:31. All 22 samples showed both DNS resolvers returning 10.7.3.98 and app HTTPS returning 200 with X-Edge: primary. The api control also returned X-Edge: primary.
+
+Follow-up from Kevish confirmed that both resolvers continued to serve app.solo.test at 10.7.3.98 with TTL 30. Kevish's installed hosts file contained the primary mapping. The standby source file correctly mapped app to 10.7.21.8 and api to 10.7.3.98.
+
+Result: the watcher saw no DNS change during this trial. Repeat after preparing the explicit install and reload commands on both DNS Macs. Direct queries must show 10.7.21.8 before the timed HTTPS results can demonstrate cache behavior.

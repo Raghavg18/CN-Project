@@ -1,0 +1,19 @@
+Phase 2F team rehearsal from Mac 2; faculty challenge pending
+2026-11-24 00:18:05 IST
+
+Fault: request to the project hostname on port 8443
+curl: (7) Failed to connect to app.solo.test port 8443 after 2 ms: Couldn't connect to server
+
+DNS: project resolver returns the expected primary address
+app.solo.test.		30	IN	A	10.7.3.98
+
+TCP: compare the incorrect and configured port
+nc: connectx to 10.7.3.98 port 8443 (tcp) failed: Connection refused
+Connection to 10.7.3.98 port 443 [tcp/https] succeeded!
+
+TLS and HTTP at the corrected URL
+HTTP/2 200
+x-backend: A
+x-edge: primary
+
+Diagnosis: wrong destination port. DNS worked; the failed connection never reached TLS. Retesting on port 443 passed TLS verification and returned HTTP 200.

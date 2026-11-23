@@ -1,0 +1,27 @@
+Phase 2C backend isolation with the temporary PF anchor enabled
+
+Raghav / Mac 3, operator-supplied activation output
+pf enabled
+pass in quick on en0 inet proto tcp from 10.7.3.98 to any port = 3001
+pass in quick on en0 inet proto tcp from 10.7.3.98 to any port = 3002
+block drop in quick on en0 proto tcp from any to any port = 3001
+block drop in quick on en0 proto tcp from any to any port = 3002
+
+Abhi / Mac 1, operator-supplied output
+curl: (28) Failed to connect to 10.7.21.8 port 3001 after 3006 ms: Timeout was reached
+curl: (28) Failed to connect to 10.7.21.8 port 3002 after 3004 ms: Timeout was reached
+HTTPS through nginx: HTTP/2 200
+x-edge: primary
+
+Kevish / Mac 2, directly verified
+2026-11-24 00:13:48 IST
+
+Direct request to port 3001
+HTTP/1.1 200 OK
+X-Backend: A
+{"backend":"A","status":"ok","time":"2026-11-23T18:43:48.426Z"}
+
+Direct request to port 3002
+HTTP/1.1 200 OK
+X-Backend: B
+{"backend":"B","status":"ok","time":"2026-11-23T18:43:48.461Z"}

@@ -1,0 +1,20 @@
+Phase 2D live recovery after Backend A returned
+2026-11-24 00:17:45 IST
+HTTP/2 200
+x-backend: B
+x-edge: primary
+HTTP/2 200
+x-backend: B
+x-edge: primary
+HTTP/2 200
+x-backend: A
+x-edge: primary
+HTTP/2 200
+x-backend: B
+x-edge: primary
+HTTP/2 200
+x-backend: A
+x-edge: primary
+HTTP/2 200
+x-backend: B
+x-edge: primary

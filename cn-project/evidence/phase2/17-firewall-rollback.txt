@@ -1,0 +1,17 @@
+Phase 2C firewall counters and rollback, 2026-11-24 IST
+
+Raghav / Mac 3, operator-supplied PF counter output before rollback
+Rule   Action   Port   Evaluations   Packets   Bytes   States
+@0     pass     3001   7024          12        1072    1
+@1     pass     3002   2             22        2055    2
+@2     block    3001   3146          4         256     0
+@3     block    3002   360           4         256     0
+
+After clearing the test anchor and releasing the test enable reference, pfctl reported:
+rules cleared
+pf disabled
+
+Abhi / Mac 1, operator-supplied output after rollback
+Port 3001: {"backend":"A","status":"ok","time":"2026-11-23T18:45:08.484Z"}
+Port 3002: {"backend":"B","status":"ok","time":"2026-11-23T18:45:08.526Z"}
+HTTPS through Kevish: HTTP/2 200, X-Edge: primary.

@@ -1,4 +1,4 @@
-# CN Project: Private Network Service Platform (Phase 1)
+# CN Project: Private Network Service Platform
 
 A client types `https://app.solo.test`. The name is resolved by **our own DNS server**, the request goes over **HTTPS to an nginx edge**, and nginx **load-balances** it across **two backends**. Every step is proven with `dig`, `curl` and Wireshark.
 
@@ -62,3 +62,13 @@ cn-project/
 | F | HTTP caching, 304 | Done |
 | G | Wireshark: DNS, TCP, TLS | Done |
 | - | Five failure demonstrations | Done |
+
+## Phase 2
+
+Phase 2 extends the three-Mac deployment with backup DNS, a 30-second DNS TTL, backend port isolation, backend failover, standby edge cutover, and layer-by-layer troubleshooting.
+
+- [Phase 2 architecture and current machine inventory](docs/PHASE2-ARCHITECTURE.md)
+- [Setup, rollback and live demonstration runbook](docs/PHASE2-RUNBOOK.md)
+- [Configuration bundle](phase2/)
+- [Phase 2 report and verification status](docs/PHASE2-REPORT.md)
+- [Evidence index and live capture checklist](evidence/phase2/README.md)

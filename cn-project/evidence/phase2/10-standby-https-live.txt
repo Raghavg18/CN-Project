@@ -1,0 +1,26 @@
+Phase 2E standby HTTPS preflight from Mac 2
+2026-11-23 23:09:43 IST
+
+app.solo.test via Raghav at 10.7.21.8
+HTTP/2 200
+x-backend: B
+x-edge: standby
+
+app.solo.test via Raghav at 10.7.21.8
+HTTP/2 200
+x-backend: A
+x-edge: standby
+
+api.solo.test via Raghav at 10.7.21.8
+HTTP/2 200
+x-backend: B
+x-edge: standby
+
+api.solo.test via Raghav at 10.7.21.8
+HTTP/2 200
+x-backend: A
+x-edge: standby
+
+Normal hostname request, before DNS cutover
+HTTP/2 200
+x-backend: A

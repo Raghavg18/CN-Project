@@ -1,0 +1,16 @@
+Phase 2B DNS TTL readiness, verified from Kevish / Mac 2
+2026-11-23 22:59:43 IST
+
+Resolver 10.7.15.27, app.solo.test
+app.solo.test.		30	IN	A	10.7.3.98
+
+Resolver 10.7.15.27, api.solo.test
+api.solo.test.		30	IN	A	10.7.3.98
+
+Resolver 10.7.3.98, app.solo.test
+app.solo.test.		30	IN	A	10.7.3.98
+
+Resolver 10.7.3.98, api.solo.test
+api.solo.test.		30	IN	A	10.7.3.98
+
+This records readiness before changing a DNS record.

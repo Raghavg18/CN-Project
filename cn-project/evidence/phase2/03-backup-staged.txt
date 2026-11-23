@@ -1,0 +1,23 @@
+Phase 2 backup DNS configuration staged on Kevish / Mac 2
+2026-11-23 22:15:26 IST
+
+Installed DNS configuration
+# Phase 2 primary and backup resolvers use the same records and TTL.
+listen-address=127.0.0.1,10.7.3.98
+bind-interfaces
+no-resolv
+server=8.8.8.8
+server=1.1.1.1
+local=/solo.test/
+no-hosts
+addn-hosts=/opt/homebrew/etc/dnsmasq.solo.hosts
+local-ttl=30
+log-queries
+
+Installed private records
+10.7.3.98 app.solo.test api.solo.test
+
+Validation
+dnsmasq: syntax check OK.
+
+Service state: activation requires administrator access.

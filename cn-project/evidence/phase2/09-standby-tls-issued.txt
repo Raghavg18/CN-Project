@@ -1,0 +1,16 @@
+Phase 2E standby certificate verification on Mac 2
+2026-11-23 23:06:46 IST
+subject=CN=app.solo.test
+issuer=CN=solo Local Root CA
+notBefore=Nov 23 17:36:46 2026 GMT
+notAfter=Dec 25 17:36:46 2027 GMT
+X509v3 Subject Alternative Name:
+    DNS:app.solo.test, DNS:api.solo.test
+
+Trust and hostname check for app.solo.test
+output/tls/standby.crt: OK
+
+Trust and hostname check for api.solo.test
+output/tls/standby.crt: OK
+
+Certificate public key matched the submitted CSR.
